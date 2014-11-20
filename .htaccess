@@ -1,0 +1,24 @@
+#TESTNG
+RedirectMatch 301 ^/((d|D)(r|R)[1234567])/?$ http://classic.sdss.org/$1
+
+RedirectMatch 301 ^/(legacy|segue|supernova)/? http://classic.sdss.org/$1
+
+RedirectMatch 301 ^/(signature.html|news) http://www.sdss.org
+
+RedirectMatch 301 ^/(members/index.html|gallery|includes) http://classic.sdss.org/$1
+
+Redirect 301 /search /404
+Redirect 301 /publications /results-science/#publications
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^_security /wp-content/plugins/password-protect-wordpress/certificate.txt [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
