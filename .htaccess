@@ -1,14 +1,16 @@
+AuthType Basic
+AuthName "Under Development"
+AuthUserfile /home/bsouter/.htpasswd
+Require valid-user
+
 #TESTNG
 RedirectMatch 301 ^/((d|D)(r|R)[1234567])/?$ http://classic.sdss.org/$1
-
 RedirectMatch 301 ^/(legacy|segue|supernova)/? http://classic.sdss.org/$1
-
-RedirectMatch 301 ^/(signature.html|news) http://www.sdss.org
-
+RedirectMatch 301 ^/(signature.html) http://www.sdss3.org
+RedirectMatch 301 ^/(news) http://blog.sdss3.org
 RedirectMatch 301 ^/(members/index.html|gallery|includes) http://classic.sdss.org/$1
-
-Redirect 301 /search /404
 Redirect 301 /publications /results-science/#publications
+RedirectMatch 301 ^/search/?$ /404/
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
